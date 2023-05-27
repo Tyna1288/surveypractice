@@ -25,7 +25,7 @@ def do_survey():
 # put here as constants so we're guaranteed to be consistent in
 # our spelling of these
 
-@app.route("/start", methods=["POST"])
+@app.route("/start", methods=["GET"])
 def start_survey():
     """Clear the session of responses."""
 
@@ -48,7 +48,7 @@ def answer_question():
 
     if (len(responses) == len(survey.questions)):
         # Thanking them, when all questions are answered.
-        return redirect("/completed")
+        return redirect("/complete")
 
     else:
         return redirect(f"/questions/{len(responses)}")
@@ -65,7 +65,7 @@ def display_question(qid):
 
     if (len(responses) == len(survey.questions)):
         # Thanking them, if all questions are answered.
-        return redirect("/completed")
+        return redirect("/complete")
 
     if (len(responses) != qid):
         # not accessing the questions orderly.
